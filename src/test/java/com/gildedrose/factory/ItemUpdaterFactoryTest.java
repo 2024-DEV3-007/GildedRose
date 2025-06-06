@@ -1,0 +1,20 @@
+package com.gildedrose.factory;
+
+import com.gildedrose.ItemType;
+import com.gildedrose.updater.AgedBrie;
+import com.gildedrose.updater.ItemUpdater;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class ItemUpdaterFactoryTest {
+
+    @Test
+    @DisplayName ("Retrieving Aged Brie item")
+    void getItemAgedBrie() {
+
+        ItemUpdater agedBrie = ItemUpdaterFactory.getItems (ItemType.AGED_BRIE.getItemName ());
+
+        assertTrue (agedBrie instanceof AgedBrie);
+    }
+}
