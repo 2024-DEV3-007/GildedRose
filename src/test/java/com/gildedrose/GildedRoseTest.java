@@ -1,48 +1,51 @@
 package com.gildedrose;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GildedRoseTest {
 
-    @Test
-    @DisplayName ("Aged Brie : SellIn value reduces by one for each day")
-    void updateSellInDaysForAgedBrie () {
-
-        Item[] items = new Item[]{new Item ("Aged Brie", 1, 1)};
-        GildedRose app = new GildedRose (items);
-        app.updateQuality ();
-        assertEquals (0, items[0].sellIn);
+    private static Stream<Arguments> sellInValidationItems () {
+        return Stream.of (
+                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 1, 1)}, 0)
+        );
     }
 
-    @Test
-    @DisplayName("Aged Brie: Increases quality by 1 when sellIn is greater than 0")
-    void updateQualityBeforeSellInDayForAgedBrie () {
+    @ParameterizedTest(name = "Verify SellIn days for items - {index}")
+    @MethodSource("sellInValidationItems")
+    @DisplayName("SellIn value decrease by 1 for all items")
+    void updateSellInDaysForItems (Item[] items, int expectedSellInDays) {
 
-        Item[] items = new Item[]{new Item ("Aged Brie", 5, 10)};
         GildedRose app = new GildedRose (items);
+
         app.updateQuality ();
-        assertEquals (11, items[0].quality);
+
+        assertEquals (expectedSellInDays, items[0].sellIn);
     }
 
-    @Test
-    @DisplayName("Aged Brie: increases quality by 2 after sellIn date has passed")
-    void updateQualityAfterSellInDayForAgedBrie () {
-
-        Item[] items = new Item[]{new Item ("Aged Brie", 0, 10)};
-        GildedRose app = new GildedRose (items);
-        app.updateQuality ();
-        assertEquals (12, items[0].quality);
+    private static Stream<Arguments> qualityValidationItems () {
+        return Stream.of (
+                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 1, 1)}, 2),
+                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 0, 10)}, 12),
+                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 2, 50)}, 50)
+        );
     }
 
-    @Test
-    @DisplayName("Aged Brie : Maximum quality is 50")
-    void qualityNeverExceedsFiftyForAgedBrie () {
+    @ParameterizedTest(name = "Verify Quality  for items - {index}")
+    @MethodSource("qualityValidationItems")
+    @DisplayName("Validate quality value for all items")
+    void updateQualityForItems (Item[] items, int expectedQuality) {
 
-        Item[] items = new Item[]{new Item ("Aged Brie", 2, 50)};
         GildedRose app = new GildedRose (items);
+
         app.updateQuality ();
-        assertEquals (50, items[0].quality);
+
+        assertEquals (expectedQuality, items[0].quality);
     }
 }
