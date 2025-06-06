@@ -7,7 +7,10 @@ class GildedRose {
         this.items = items;
     }
 
-    public void updateQuality() {
-
+    public void updateQuality () {
+        for (Item item : items) {
+            if (item.name.equals ("Aged Brie"))
+                item.sellIn--;
+        }
     }
 }
