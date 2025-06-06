@@ -2,6 +2,7 @@ package com.gildedrose.factory;
 
 import com.gildedrose.ItemType;
 import com.gildedrose.updater.AgedBrie;
+import com.gildedrose.updater.DefaultItem;
 import com.gildedrose.updater.ItemUpdater;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,9 @@ public class ItemUpdaterFactory {
     }
 
     public static ItemUpdater getItems (String itemType) {
-        return ITEM_SUPPLIER.get (itemType).get ();
+        return ITEM_SUPPLIER.getOrDefault(itemType, DefaultItem::new).get();
+    }
+
+    private ItemUpdaterFactory(){
     }
 }

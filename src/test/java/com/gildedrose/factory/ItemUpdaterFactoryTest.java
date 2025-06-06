@@ -2,6 +2,7 @@ package com.gildedrose.factory;
 
 import com.gildedrose.ItemType;
 import com.gildedrose.updater.AgedBrie;
+import com.gildedrose.updater.DefaultItem;
 import com.gildedrose.updater.ItemUpdater;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,5 +17,14 @@ public class ItemUpdaterFactoryTest {
         ItemUpdater agedBrie = ItemUpdaterFactory.getItems (ItemType.AGED_BRIE.getItemName ());
 
         assertTrue (agedBrie instanceof AgedBrie);
+    }
+
+    @Test
+    @DisplayName("Retrieving Default item")
+    void getDefaultItem() {
+
+        ItemUpdater defaultItem = ItemUpdaterFactory.getItems ("Elixir of the Mongoose");
+
+        assertTrue (defaultItem instanceof DefaultItem);
     }
 }
