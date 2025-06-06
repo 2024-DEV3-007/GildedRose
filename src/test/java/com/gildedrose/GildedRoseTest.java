@@ -35,4 +35,14 @@ public class GildedRoseTest {
         app.updateQuality ();
         assertEquals (12, items[0].quality);
     }
+
+    @Test
+    @DisplayName("Aged Brie : Maximum quality is 50")
+    void qualityNeverExceedsFiftyForAgedBrie () {
+
+        Item[] items = new Item[]{new Item ("Aged Brie", 2, 50)};
+        GildedRose app = new GildedRose (items);
+        app.updateQuality ();
+        assertEquals (50, items[0].quality);
+    }
 }
