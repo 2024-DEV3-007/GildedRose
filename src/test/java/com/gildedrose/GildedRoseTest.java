@@ -15,4 +15,14 @@ public class GildedRoseTest {
         app.updateQuality ();
         assertEquals (0, items[0].sellIn);
     }
+
+    @Test
+    @DisplayName("Aged Brie: Increases quality by 1 when sellIn is greater than 0")
+    void updateQualityBeforeSellInDayForAgedBrie () {
+
+        Item[] items = new Item[]{new Item ("Aged Brie", 5, 10)};
+        GildedRose app = new GildedRose (items);
+        app.updateQuality ();
+        assertEquals (11, items[0].quality);
+    }
 }
