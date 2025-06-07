@@ -86,4 +86,21 @@ public class ItemValidatorTest {
 
         assertEquals (expectedQuality, input.quality);
     }
+
+    private static Stream<Arguments> getItemsToSetQualityForMinimum () {
+        return Stream.of (
+                Arguments.of (new Item (ItemType.BACK_STAGE_PASSES.getItemName (), 5, 10), 0),
+                Arguments.of (new Item (ItemType.BACK_STAGE_PASSES.getItemName (), 0, 2), 0)
+        );
+    }
+
+    @ParameterizedTest(name = "Set quality to minimum - {index} ")
+    @MethodSource("getItemsToSetQualityForMinimum")
+    @DisplayName("Set the quality to minimum for the items")
+    void setQualityToMinForItems (Item input, int expectedQuality) {
+
+        itemValidator.setQualityToMinimum (input);
+
+        assertEquals (expectedQuality, input.quality);
+    }
 }
