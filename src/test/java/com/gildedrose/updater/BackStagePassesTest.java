@@ -37,4 +37,15 @@ public class BackStagePassesTest {
 
         assertEquals (11, item.quality);
     }
+
+    @Test
+    @DisplayName("Backstage Pass : Maximum quality  is 50")
+    void qualityNeverExceedsFiftyForBackStagePass () {
+
+        Item item = new Item (ItemType.BACK_STAGE_PASSES.getItemName (), 6, 50);
+
+        backStagePasses.update (item);
+
+        assertEquals (50, item.quality);
+    }
 }
