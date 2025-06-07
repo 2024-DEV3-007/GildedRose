@@ -2,6 +2,7 @@ package com.gildedrose.factory;
 
 import com.gildedrose.ItemType;
 import com.gildedrose.updater.AgedBrie;
+import com.gildedrose.updater.BackStagePasses;
 import com.gildedrose.updater.DefaultItem;
 import com.gildedrose.updater.ItemUpdater;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class ItemUpdaterFactory {
     private static Map<String, Supplier<ItemUpdater>> createItemsMap () {
         Map<String, Supplier<ItemUpdater>> map = new HashMap<> ();
         map.put (ItemType.AGED_BRIE.getItemName (), AgedBrie::new);
+        map.put(ItemType.BACK_STAGE_PASSES.getItemName(), BackStagePasses::new);
         return map;
     }
 
