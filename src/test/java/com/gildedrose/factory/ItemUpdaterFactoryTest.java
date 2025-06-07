@@ -1,10 +1,7 @@
 package com.gildedrose.factory;
 
 import com.gildedrose.ItemType;
-import com.gildedrose.updater.AgedBrie;
-import com.gildedrose.updater.BackStagePasses;
-import com.gildedrose.updater.DefaultItem;
-import com.gildedrose.updater.ItemUpdater;
+import com.gildedrose.updater.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,5 +33,14 @@ public class ItemUpdaterFactoryTest {
         ItemUpdater backStagePasses = ItemUpdaterFactory.getItems (ItemType.BACK_STAGE_PASSES.getItemName ());
 
         assertTrue (backStagePasses instanceof BackStagePasses);
+    }
+
+    @Test
+    @DisplayName("Retrieving Sulfuras  item")
+    void getSulfurasItem() {
+
+        ItemUpdater sulfuras = ItemUpdaterFactory.getItems (ItemType.SULFURAS.getItemName ());
+
+        assertTrue (sulfuras instanceof Sulfuras);
     }
 }
