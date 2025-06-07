@@ -10,6 +10,8 @@ public class BackStagePasses implements ItemUpdater{
     public void update (Item item) {
         incrementQuality (item, calculateIncrementValue (item));
         updateSellInDays(item);
+        if (isExpired (item))
+            item.quality = MIN_QUALITY;
     }
 
     private static int calculateIncrementValue (Item item) {
