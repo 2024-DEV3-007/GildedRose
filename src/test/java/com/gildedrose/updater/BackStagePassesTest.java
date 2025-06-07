@@ -5,6 +5,10 @@ import com.gildedrose.ItemType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BackStagePassesTest {
@@ -80,5 +84,22 @@ public class BackStagePassesTest {
         backStagePasses.update (item);
 
         assertEquals (0, item.quality);
+    }
+
+    private static Stream<Arguments> getQualityForItems () {
+        return Stream.of (
+                Arguments.of (new Item (ItemType.BACK_STAGE_PASSES.getItemName (), 10, 12), 14),
+                Arguments.of (new Item (ItemType.BACK_STAGE_PASSES.getItemName (), 5, 12), 15)
+        );
+    }
+
+    @ParameterizedTest(name = "Increment item quality - {index} ")
+    @MethodSource("getQualityForItems")
+    @DisplayName("Increment item quality for checking edge cases")
+    void incrementQualityForItemsForEdgeCases (Item input, int expectedQuality) {
+
+        backStagePasses.update (input);
+
+        assertEquals (expectedQuality, input.quality);
     }
 }
