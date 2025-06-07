@@ -25,4 +25,15 @@ public class DefaultItemTest {
 
         assertEquals (9, item.sellIn);
     }
+
+    @Test
+    @DisplayName("Default item : Quality decreases by 1 before sellIn date")
+    void qualityDecreasesByOneBeforeSellIn() {
+
+        Item item = new Item("Elixir of the Mongoose", 5, 10);
+
+        defaultItem.update(item);
+
+        assertEquals(9, item.quality);
+    }
 }
