@@ -13,7 +13,8 @@ public class GildedRoseTest {
 
     private static Stream<Arguments> sellInValidationItems () {
         return Stream.of (
-                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 1, 1)}, 0)
+                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 1, 1)}, 0),
+                Arguments.of(new Item[] { new Item("Elixir of the Mongoose", 2, 1) }, 1)
         );
     }
 
@@ -33,7 +34,11 @@ public class GildedRoseTest {
         return Stream.of (
                 Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 1, 1)}, 2),
                 Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 0, 10)}, 12),
-                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 2, 50)}, 50)
+                Arguments.of (new Item[]{new Item (ItemType.AGED_BRIE.getItemName (), 2, 50)}, 50),
+
+                Arguments.of(new Item[] { new Item("Elixir of the Mongoose", 2, 1) }, 0),
+                Arguments.of(new Item[] { new Item("Elixir of the Mongoose", 0, 6) },4),
+                Arguments.of(new Item[] { new Item("Elixir of the Mongoose", 5, 0) },0)
         );
     }
 
