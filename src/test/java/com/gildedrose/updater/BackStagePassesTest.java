@@ -26,4 +26,15 @@ public class BackStagePassesTest {
 
         assertEquals (0, item.sellIn);
     }
+
+    @Test
+    @DisplayName("BackStage Passes : Quality increases by 1 each day before the sellIn date")
+    void updateQualityBeforeSellInDayForBackStagePasses () {
+
+        Item item = new Item (ItemType.BACK_STAGE_PASSES.getItemName (), 5, 10);
+
+        backStagePasses.update (item);
+
+        assertEquals (11, item.quality);
+    }
 }
