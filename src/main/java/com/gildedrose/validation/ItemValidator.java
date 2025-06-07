@@ -17,4 +17,8 @@ public class ItemValidator {
     public static boolean isExpired (Item item) {
         return item.sellIn < 0;
     }
+
+    public static void decrementQuality (Item item, int amount) {
+        item.quality = Math.max (item.quality - amount, MIN_QUALITY);
+    }
 }
