@@ -47,4 +47,15 @@ public class DefaultItemTest {
 
         assertEquals(8, item.quality);
     }
+
+    @Test
+    @DisplayName("Default item : Quality never goes below 0")
+    void qualityNeverGoesBelowZero() {
+
+        Item item = new Item("Elixir of the Mongoose", 0, 0);
+
+        defaultItem.update(item);
+
+        assertEquals(0, item.quality);
+    }
 }

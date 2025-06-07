@@ -7,8 +7,12 @@ public class DefaultItem implements ItemUpdater{
 
     @Override
     public void update (Item item) {
-        int decrement = (item.sellIn > 0) ? 1 : 2;
-        item.quality -= decrement;
+        int decrementValue = (item.sellIn > 0) ? 1 : 2;
+        decrementQuality(item,decrementValue);
         updateSellInDays(item);
+    }
+
+    private void decrementQuality (Item item, int amount) {
+        item.quality = Math.max (item.quality - amount, 0);
     }
 }
