@@ -48,4 +48,15 @@ public class ConjuredTest {
 
         assertEquals(6, item.quality);
     }
+
+    @Test
+    @DisplayName("Conjured : Quality never goes below 0")
+    void qualityNeverGoesBelowZero() {
+
+        Item item = new Item(ItemType.CONJURED.getItemName (), 0, 0);
+
+        conjured.update (item);
+
+        assertEquals(0, item.quality);
+    }
 }
