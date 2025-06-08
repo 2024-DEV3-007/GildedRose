@@ -15,6 +15,7 @@ public class ItemUpdaterFactory {
         map.put (ItemType.AGED_BRIE.getItemName (), AgedBrie::new);
         map.put(ItemType.BACK_STAGE_PASSES.getItemName(), BackStagePasses::new);
         map.put(ItemType.SULFURAS.getItemName(), Sulfuras::new);
+        map.put(ItemType.CONJURED.getItemName(), Conjured::new);
         return map;
     }
 
