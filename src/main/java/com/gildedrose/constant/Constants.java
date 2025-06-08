@@ -12,4 +12,5 @@ public class Constants {
     public static final int SINGLE_QUALITY_HIKE = 1;
     public static final int DOUBLE_QUALITY_HIKE = 2;
     public static final int EXTRA_QUALITY_HIKE = 3;
+    public static final int DOUBLE_QUALITY_DECREMENT = 2;
 }
