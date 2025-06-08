@@ -37,4 +37,15 @@ public class ConjuredTest {
 
         assertEquals(8, item.quality);
     }
+
+    @Test
+    @DisplayName("Conjured : Quality decreases by 4 when expires")
+    void qualityDecreasesByFourWhenExpires() {
+
+        Item item = new Item(ItemType.CONJURED.getItemName (), 0, 10);
+
+        conjured.update (item);
+
+        assertEquals(6, item.quality);
+    }
 }
